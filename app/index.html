@@ -88,6 +88,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-icon icon="mail"></iron-icon>
             <span>Contact</span>
           </a>
+          
+          <a data-route="books" href="{{baseUrl}}books">
+            <iron-icon icon="book"></iron-icon>
+            <span>Books</span>
+          </a>
         </paper-menu>
       </paper-scroll-header-panel>
 
@@ -102,7 +107,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <!-- Toolbar icons -->
           <paper-icon-button icon="refresh"></paper-icon-button>
           <paper-icon-button icon="search"></paper-icon-button>
-
+          <my-header client-id="257976069464-7nb9279dhe6rtnassn2mcqu88091jukq.apps.googleusercontent.com" scopes="profile"></my-header>
+          
           <!-- Application name -->
           <div class="middle middle-container center horizontal layout">
             <div class="app-name">Polymer Starter Kit</div>
@@ -178,6 +184,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
+            <section data-route="books">
+              <paper-material elevation="1">
+                <p>Hello, World!</p>
+              </paper-material>
+            </section>
           </iron-pages>
         </div>
       </paper-scroll-header-panel>
@@ -208,6 +219,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
+  <script src="https://apis.google.com/js/client.js?onload=init"></script>
   <!-- endbuild-->
 </body>
 

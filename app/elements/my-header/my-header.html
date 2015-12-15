@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/google-signin/google-signin.html">
+
+<dom-module id="my-header">
+  <template>
+    <style>
+      :host {
+        display: flex; 
+        justify-content: flex-end;
+      }
+      
+      .userImage {
+        border-radius: 50%;
+        height: 50px;
+        align-self: center;
+      } 
+      
+      .userName {
+        align-self: center;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-weight: 500;
+      }
+      
+      .googleButton {
+        align-self: center;
+      }
+    </style>
+    
+    <google-signin class="googleButton" client-id="{{clientId}}" scopes="{{scopes}}" theme="dark" height="short"
+      signed-in="{{signedIn}}" 
+      on-google-signin-aware-success="handleSignIn"
+      on-google-signin-aware-signed-out="handleSignOut"></google-signin>
+    <span class="userName" hidden$="{{!signedIn}}">{{userFullName}}</span>
+    <img class="userImage" src="{{userImageUrl}}" hidden$="{{!signedIn}}">
+  </template>
+  	
+  <script>
+    (function() {
+      Polymer({
+        is: 'my-header',
+        
+        properties: {
+          clientId: {
+            type: String,
+            value: ''
+          },
+          scopes: {
+            type: String,
+            value: ''
+          }
+        },
+        
+        handleSignIn: function(response) {
+          var userProfile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+          this.userFullName = userProfile.getName();
+          this.userImageUrl = userProfile.getImageUrl();
+        },
+        
+        handleSignOut: function(response) {
+          this.userFullName = '';
+          this.userImageUrl = '';
+        }
+      });
+    })();    
+  </script>
+</dom-module>
